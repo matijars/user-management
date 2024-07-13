@@ -13,6 +13,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppLoginFormComponent {
   @Output() formSubmit = new EventEmitter<void>();
   loginForm = new AppLoginForm();
+  hide = true;
+
+  togglePasswordVisibility() {
+    this.hide = !this.hide;
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {
