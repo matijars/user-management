@@ -3,12 +3,12 @@
     <h2
       class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
     >
-      Log In
+      Register
     </h2>
   </div>
 
   <div class="mt-10 flex flex-col sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label
           for="email"
@@ -23,9 +23,9 @@
             type="email"
             formControlName="email"
           />
-          @if ( loginForm.controls['email'].invalid &&
-          (loginForm.controls['email'].dirty ||
-          loginForm.controls['email'].touched) ) {
+          @if ( registerForm.controls['email'].invalid &&
+          (registerForm.controls['email'].dirty ||
+          registerForm.controls['email'].touched) ) {
           <p class="text-red-500 text-sm font-medium">Email is required.</p>
           }
         </div>
@@ -123,15 +123,15 @@
             </button>
           </div>
 
-          @if ( loginForm.controls['password'].invalid &&
-          (loginForm.controls['password'].dirty ||
-          loginForm.controls['password'].touched)) {
+          @if ( registerForm.controls['password'].invalid &&
+          (registerForm.controls['password'].dirty ||
+          registerForm.controls['password'].touched)) {
           <div class="text-red-500 text-sm font-medium">
-            @if(loginForm.controls['password'].errors?.['required']){ Password
-            is required. }
-            @if(loginForm.controls['password'].errors?.['passwordStrength'] &&
-            !loginForm.controls['password'].errors?.['required']) { Password is
-            not strong enough.
+            @if(registerForm.controls['password'].errors?.['required']){
+            Password is required. }
+            @if(registerForm.controls['password'].errors?.['passwordStrength']
+            && !registerForm.controls['password'].errors?.['required']) {
+            Password is not strong enough.
             <p class="text-xs">
               *Must include at least 8 characters, capital letter, number, and
               special character
@@ -141,20 +141,113 @@
           }
         </div>
       </div>
+      <div class="form-group">
+        <label
+          for="confirmPassword"
+          class="block text-sm font-medium leading-6 text-gray-900"
+          >Confirm Password</label
+        >
+
+        <div class="mt-0">
+          <div class="relative">
+            <input
+              class="block w-full rounded-md border-0 py-1.5 pl-2 pr-9 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              id="confirmPassword"
+              name="confirmPassword"
+              [type]="hideConfirm ? 'password' : 'text'"
+              formControlName="confirmPassword"
+            />
+            <button
+              type="button"
+              (click)="toggleConfirmPasswordVisibility()"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+            >
+              @if(hideConfirm){
+              <svg
+                *ngIf="hideConfirm"
+                class="h-5 w-5 text-gray-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M11.9944 15.5C13.9274 15.5 15.4944 13.933 15.4944 12C15.4944 10.067 13.9274 8.5 11.9944 8.5C10.0614 8.5 8.49439 10.067 8.49439 12C8.49439 13.933 10.0614 15.5 11.9944 15.5ZM11.9944 13.4944C11.1691 13.4944 10.5 12.8253 10.5 12C10.5 11.1747 11.1691 10.5056 11.9944 10.5056C12.8197 10.5056 13.4888 11.1747 13.4888 12C13.4888 12.8253 12.8197 13.4944 11.9944 13.4944Z"
+                    fill="#0F0F0F"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 5C7.18879 5 3.9167 7.60905 2.1893 9.47978C0.857392 10.9222 0.857393 13.0778 2.1893 14.5202C3.9167 16.391 7.18879 19 12 19C16.8112 19 20.0833 16.391 21.8107 14.5202C23.1426 13.0778 23.1426 10.9222 21.8107 9.47978C20.0833 7.60905 16.8112 5 12 5ZM3.65868 10.8366C5.18832 9.18002 7.9669 7 12 7C16.0331 7 18.8117 9.18002 20.3413 10.8366C20.9657 11.5128 20.9657 12.4872 20.3413 13.1634C18.8117 14.82 16.0331 17 12 17C7.9669 17 5.18832 14.82 3.65868 13.1634C3.03426 12.4872 3.03426 11.5128 3.65868 10.8366Z"
+                    fill="#0F0F0F"
+                  ></path>
+                </g>
+              </svg>
+              } @else if (!hideConfirm) {
+              <svg
+                *ngIf="!hideConfirm"
+                class="h-5 w-5 text-gray-500"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M2 2L22 22"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </g>
+              </svg>
+              }
+            </button>
+          </div>
+          @if(registerForm.errors?.['passwordMismatch']){
+          <p class="text-red-500 text-sm font-medium">
+            Passwords do not match.
+          </p>
+          }
+        </div>
+      </div>
 
       <div>
         <button
           type="submit"
           class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Log In
+          Register
         </button>
       </div>
     </form>
-    <a
-      [routerLink]="['/register']"
-      class="font-semibold mx-auto mt-2 p-2 leading-6 text-indigo-600 hover:text-indigo-500"
-      >Register</a
-    >
   </div>
 </div>
