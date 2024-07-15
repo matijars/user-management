@@ -1,1 +1,6 @@
-<p>app-user-page works!</p>
+<app-user-form
+  (submitForm)="handleSubmit($event)"
+  [action]="action"
+  [user]="user"
+>
+</app-user-form>

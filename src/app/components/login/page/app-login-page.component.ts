@@ -13,7 +13,7 @@ export class AppLoginPageComponent {
   router = inject(Router);
   constructor() {}
 
-  handleLogin() {
+  handleSubmit() {
     this.router.navigate(['/users/list']);
   }
 }
