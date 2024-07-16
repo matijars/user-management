@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: 'register', component: AppRegisterPageComponent },
   { path: 'users/list', component: AppUsersListComponent },
   { path: 'users/new', component: AppUserPageComponent },
-  { path: 'users/:id/view', component: AppUserPageComponent },
-  { path: 'users/:id/edit', component: AppUserPageComponent },
+  { path: 'users/:userId/view', component: AppUserPageComponent },
+  { path: 'users/:userId/edit', component: AppUserPageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

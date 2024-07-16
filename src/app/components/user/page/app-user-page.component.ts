@@ -21,7 +21,7 @@ export class AppUserPageComponent implements OnInit {
   action: 'edit' | 'new' | 'view' | 'unknown' = 'unknown';
 
   ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id');
+    const idParam = this.route.snapshot.paramMap.get('userId');
     if (idParam !== null) {
       const userId = parseInt(idParam);
       this.usersService.getUser(userId).subscribe((user) => {
@@ -53,12 +53,24 @@ export class AppUserPageComponent implements OnInit {
   }
 
   handleSubmit(newUser: any) {
-    const user = {
-      id: Math.floor(Math.random() * 1000000),
+    const user: AppUserModel = {
+      id:
+        this.action === 'edit'
+          ? this.user.id
+          : Math.floor(Math.random() * 1000000),
       username: newUser.username,
       email: newUser.email,
+      type: newUser.type,
+      pib: newUser.pib,
+      mbr: newUser.mbr,
     };
-    this.usersService.addUser(user);
+
+    if (this.action === 'edit') {
+      this.usersService.editUser(user);
+    } else if (this.action === 'new') {
+      this.usersService.addUser(user);
+    }
+
     this.router.navigate(['/users/list']);
   }
 }

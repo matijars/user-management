@@ -22,6 +22,9 @@ export class AppUserFormComponent implements OnInit {
     if (this.action === 'view' || this.action === 'edit') {
       this.userForm.controls['username'].setValue(this.user.username);
       this.userForm.controls['email'].setValue(this.user.email);
+      this.userForm.controls['type'].setValue(this.user.type);
+      this.userForm.controls['pib'].setValue(this.user.pib);
+      this.userForm.controls['mbr'].setValue(this.user.mbr);
     }
   }
 
