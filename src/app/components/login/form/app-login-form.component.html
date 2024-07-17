@@ -30,7 +30,9 @@
           @if ( loginForm.controls['email'].invalid &&
           (loginForm.controls['email'].dirty ||
           loginForm.controls['email'].touched) ) {
-          <p class="text-red-500 text-sm font-medium">Email is required.</p>
+          <p class="text-red-500 text-sm font-medium email-error">
+            Email is required.
+          </p>
           }
         </div>
       </div>
@@ -130,7 +132,7 @@
           @if ( loginForm.controls['password'].invalid &&
           (loginForm.controls['password'].dirty ||
           loginForm.controls['password'].touched)) {
-          <div class="text-red-500 text-sm font-medium">
+          <div class="text-red-500 text-sm font-medium password-error">
             @if(loginForm.controls['password'].errors?.['required']){ Password
             is required. }
             @if(loginForm.controls['password'].errors?.['passwordStrength'] &&

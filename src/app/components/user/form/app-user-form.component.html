@@ -3,8 +3,11 @@
     <h2
       class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
     >
-      @if(action === 'new') { Add new user } @else if (action === 'edit') { Edit
-      user } @else { User information }
+      @if(action === 'new') {
+      <span class="text-indigo-600">Add new user </span>} @else if (action ===
+      'edit') { <span class="text-yellow-600">Edit user</span> } @else {
+      <span class="text-green-600">User information</span>
+      }
     </h2>
   </div>
 
