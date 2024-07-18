@@ -37,7 +37,9 @@
           @if ( userForm.controls['username'].invalid &&
           (userForm.controls['username'].dirty ||
           userForm.controls['username'].touched) ) {
-          <p class="text-red-500 text-sm font-medium">Username is required.</p>
+          <p class="text-red-500 text-sm font-medium username-error">
+            Username is required.
+          </p>
           }
         </div>
       </div>
@@ -61,7 +63,9 @@
           @if ( userForm.controls['email'].invalid &&
           (userForm.controls['email'].dirty ||
           userForm.controls['email'].touched) ) {
-          <p class="text-red-500 text-sm font-medium">Email is required.</p>
+          <p class="text-red-500 text-sm font-medium email-error">
+            Email is required.
+          </p>
           }
         </div>
       </div>
@@ -107,7 +111,9 @@
           @if ( userForm.controls['pib'].invalid &&
           (userForm.controls['pib'].dirty || userForm.controls['pib'].touched) )
           {
-          <p class="text-red-500 text-sm font-medium">PIB is required.</p>
+          <p class="text-red-500 text-sm font-medium pib-error">
+            PIB is required.
+          </p>
           }
         </div>
       </div>
@@ -132,7 +138,9 @@
           @if ( userForm.controls['mbr'].invalid &&
           (userForm.controls['mbr'].dirty || userForm.controls['mbr'].touched) )
           {
-          <p class="text-red-500 text-sm font-medium">MBR is required.</p>
+          <p class="text-red-500 text-sm font-medium mbr-error">
+            MBR is required.
+          </p>
           }
         </div>
       </div>
@@ -140,14 +148,14 @@
       @if(action === 'new') {
       <button
         type="submit"
-        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        class="add-edit flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         Add
       </button>
       } @else if (action === 'edit') {
       <button
         type="submit"
-        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        class="add-edit flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         Edit
       </button>

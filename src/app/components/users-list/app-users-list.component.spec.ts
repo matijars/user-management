@@ -1,24 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AppUsersListComponent } from './app-users-list.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
+import {
+  AppUserModel,
+  AppUsersServiceService,
+} from '../../services/app-users-service.service';
 
 describe('AppUsersListComponent', () => {
   let component: AppUsersListComponent;
   let fixture: ComponentFixture<AppUsersListComponent>;
+  let usersService: jasmine.SpyObj<AppUsersServiceService>;
 
   beforeEach(async () => {
+    usersService = jasmine.createSpyObj('AppUsersServiceService', ['getUsers']);
     await TestBed.configureTestingModule({
-      // Ne dodajemo AppUsersListComponent u 'declarations' već ga uvozimo u 'imports'
       imports: [RouterModule, CommonModule],
       providers: [
-        // Provide a mock ActivatedRoute with a params observable
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: 'test-id' }), // Mock params as needed
+            params: of({ id: 'test-id' }),
           },
         },
       ],
@@ -33,5 +36,22 @@ describe('AppUsersListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // Dodaj ostale testove ovde
+  it('should have all elements defined', () => {
+    let addUserBtn = fixture.nativeElement.querySelector('#add-user-btn');
+    let usersTable = fixture.nativeElement.querySelector('#users-table');
+
+    expect(addUserBtn).toBeTruthy();
+    expect(usersTable).toBeTruthy();
+  });
+
+  it('should show msg if users lenght is 0', () => {
+    const emptyUsersArray: AppUserModel[] = [];
+    usersService.getUsers.and.returnValue(of(emptyUsersArray));
+
+    fixture.detectChanges();
+
+    const emptyTableMessage =
+      fixture.nativeElement.querySelector('#empty-table');
+    expect(emptyTableMessage).toBeTruthy();
+  });
 });

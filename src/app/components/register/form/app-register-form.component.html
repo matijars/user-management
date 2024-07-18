@@ -30,7 +30,9 @@
           @if ( registerForm.controls['email'].invalid &&
           (registerForm.controls['email'].dirty ||
           registerForm.controls['email'].touched) ) {
-          <p class="text-red-500 text-sm font-medium">Email is required.</p>
+          <p class="text-red-500 text-sm font-medium email-error">
+            Email is required.
+          </p>
           }
         </div>
       </div>
@@ -130,7 +132,7 @@
           @if ( registerForm.controls['password'].invalid &&
           (registerForm.controls['password'].dirty ||
           registerForm.controls['password'].touched)) {
-          <div class="text-red-500 text-sm font-medium">
+          <div class="text-red-500 text-sm font-medium password-error">
             @if(registerForm.controls['password'].errors?.['required']){
             Password is required. }
             @if(registerForm.controls['password'].errors?.['passwordStrength']
@@ -237,7 +239,7 @@
             </button>
           </div>
           @if(registerForm.errors?.['passwordMismatch']){
-          <p class="text-red-500 text-sm font-medium">
+          <p class="text-red-500 text-sm font-medium confirm-password-error">
             Passwords do not match.
           </p>
           }

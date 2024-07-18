@@ -15,7 +15,7 @@ describe('AppLoginPageComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: 'test-id' }), // Mock params as needed
+            params: of({ id: 'test-id' }),
           },
         },
       ],

@@ -16,37 +16,7 @@ export interface AppUserModel {
 export class AppUsersServiceService {
   private usersSubject: BehaviorSubject<AppUserModel[]> = new BehaviorSubject<
     AppUserModel[]
-  >([
-    {
-      id: 1,
-      username: 'John Thomas',
-      email: 'john.thomas@example.com',
-      type: 'individual',
-    },
-    {
-      id: 2,
-      username: 'Tesla',
-      email: 'tesla@example.com',
-      type: 'company',
-      pib: 123456,
-      mbr: 987654,
-    },
-  ]);
-
-  // {
-  //   id: 1,
-  //   username: 'John Thomas',
-  //   email: 'john.thomas@example.com',
-  //   type: 'individual',
-  // },
-  // {
-  //   id: 2,
-  //   username: 'Tesla',
-  //   email: 'tesla@example.com',
-  //   type: 'company',
-  //   pib: 123456,
-  //   mbr: 987654,
-  // },
+  >([]);
 
   getUsers(): Observable<AppUserModel[]> {
     return this.usersSubject.asObservable();

@@ -1,4 +1,5 @@
 <a
+  id="add-user-btn"
   [routerLink]="['/users/new']"
   class="mx-auto my-5 block w-fit rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-500"
 >
@@ -9,6 +10,7 @@
   class="w-3/4 lg:w-3/6 mx-auto relative overflow-x-auto shadow-md sm:rounded-lg"
 >
   <table
+    id="users-table"
     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
   >
     <thead
@@ -92,7 +94,11 @@
         </td>
       </tr>
       <tr *ngIf="(users$ | async)?.length === 0">
-        <td colspan="4" class="px-6 py-4 text-center font-medium text-gray-400">
+        <td
+          id="empty-table"
+          colspan="4"
+          class="px-6 py-4 text-center font-medium text-gray-400"
+        >
           Users table is empty.
         </td>
       </tr>
