@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class AppLoginPageComponent {
   router = inject(Router);
-  constructor() {}
 
   handleSubmit() {
     this.router.navigate(['/users/list']);

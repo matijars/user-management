@@ -15,6 +15,7 @@ export class AppRegisterFormComponent {
   registerForm = new AppRegisterForm();
   hide = true;
   hideConfirm = true;
+  submitting: boolean = false;
 
   togglePasswordVisibility() {
     this.hide = !this.hide;
@@ -26,7 +27,14 @@ export class AppRegisterFormComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.formSubmit.emit();
+      this.submitting = true;
+
+      // Added timeout and submitting to simulate request delay
+      setTimeout(() => {
+        this.formSubmit.emit();
+
+        this.submitting = false;
+      }, 1000);
     } else {
       this.registerForm.markAllAsTouched();
     }

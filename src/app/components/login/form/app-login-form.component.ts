@@ -15,6 +15,7 @@ export class AppLoginFormComponent {
   @Output() formSubmit = new EventEmitter<void>();
   loginForm = new AppLoginForm();
   hide = true;
+  submitting: boolean = false;
 
   togglePasswordVisibility() {
     this.hide = !this.hide;
@@ -22,7 +23,14 @@ export class AppLoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.formSubmit.emit();
+      this.submitting = true;
+
+      // Added timeout and submitting to simulate request delay
+      setTimeout(() => {
+        this.formSubmit.emit();
+
+        this.submitting = false;
+      }, 1000);
     } else {
       this.loginForm.markAllAsTouched();
     }

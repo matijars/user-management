@@ -17,6 +17,7 @@ export class AppUserFormComponent implements OnInit {
   @Input() action: 'edit' | 'new' | 'view' | 'unknown' = 'unknown';
   @Input() user!: AppUserModel;
   userForm = new AppUserForm();
+  submitting: boolean = false;
 
   ngOnInit(): void {
     if (this.action === 'view' || this.action === 'edit') {
@@ -30,7 +31,14 @@ export class AppUserFormComponent implements OnInit {
 
   onSubmit() {
     if (this.userForm.valid) {
-      this.submitForm.emit(this.userForm.value);
+      this.submitting = true;
+
+      // Added timeout and submitting to simulate request delay
+      setTimeout(() => {
+        this.submitForm.emit(this.userForm.value);
+
+        this.submitting = false;
+      }, 1000);
     } else {
       this.userForm.markAllAsTouched();
     }
