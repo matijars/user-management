@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import {
   AppUserModel,
-  AppUsersServiceService,
-} from '../../services/app-users-service.service';
+  AppUsersService,
+} from '../../services/app-users.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './users-list-signals.component.scss',
 })
 export class AppUsersListSignalsComponent implements OnInit {
-  usersService = inject(AppUsersServiceService);
+  usersService = inject(AppUsersService);
   users!: AppUserModel[];
 
   ngOnInit(): void {

@@ -3,7 +3,7 @@ import { AppUserForm } from '../form-model/app-user-form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AppUserModel } from '../../../services/app-users-service.service';
+import { AppUserModel } from '../../../services/app-users.service';
 
 @Component({
   selector: 'app-user-form',

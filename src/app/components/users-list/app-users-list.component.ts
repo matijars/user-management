@@ -2,8 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   AppUserModel,
-  AppUsersServiceService,
-} from '../../services/app-users-service.service';
+  AppUsersService,
+} from '../../services/app-users.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppUsersListComponent implements OnInit {
   users$!: Observable<AppUserModel[]>;
-  usersService = inject(AppUsersServiceService);
+  usersService = inject(AppUsersService);
 
   ngOnInit(): void {
     this.users$ = this.usersService.getUsers();

@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppUsersListSignalsComponent } from './users-list-signals.component';
 import {
   AppUserModel,
-  AppUsersServiceService,
-} from '../../services/app-users-service.service';
+  AppUsersService,
+} from '../../services/app-users.service';
 import { of } from 'rxjs';
 import { signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,10 +12,10 @@ import { ActivatedRoute } from '@angular/router';
 describe('UsersListSignalsComponent', () => {
   let component: AppUsersListSignalsComponent;
   let fixture: ComponentFixture<AppUsersListSignalsComponent>;
-  let usersService: jasmine.SpyObj<AppUsersServiceService>;
+  let usersService: jasmine.SpyObj<AppUsersService>;
 
   beforeEach(async () => {
-    usersService = jasmine.createSpyObj('AppUsersServiceService', [
+    usersService = jasmine.createSpyObj('AppUsersService', [
       'getUsersBySignal',
     ]);
     await TestBed.configureTestingModule({

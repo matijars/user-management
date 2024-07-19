@@ -5,16 +5,16 @@ import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import {
   AppUserModel,
-  AppUsersServiceService,
-} from '../../services/app-users-service.service';
+  AppUsersService,
+} from '../../services/app-users.service';
 
 describe('AppUsersListComponent', () => {
   let component: AppUsersListComponent;
   let fixture: ComponentFixture<AppUsersListComponent>;
-  let usersService: jasmine.SpyObj<AppUsersServiceService>;
+  let usersService: jasmine.SpyObj<AppUsersService>;
 
   beforeEach(async () => {
-    usersService = jasmine.createSpyObj('AppUsersServiceService', ['getUsers']);
+    usersService = jasmine.createSpyObj('AppUsersService', ['getUsers']);
     await TestBed.configureTestingModule({
       imports: [RouterModule, CommonModule],
       providers: [

@@ -3,8 +3,8 @@ import { AppUserFormComponent } from '../form/app-user-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   AppUserModel,
-  AppUsersServiceService,
-} from '../../../services/app-users-service.service';
+  AppUsersService,
+} from '../../../services/app-users.service';
 
 @Component({
   selector: 'app-user-page',
@@ -16,7 +16,7 @@ import {
 export class AppUserPageComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
-  usersService = inject(AppUsersServiceService);
+  usersService = inject(AppUsersService);
   user!: AppUserModel;
   action: 'edit' | 'new' | 'view' | 'unknown' = 'unknown';
 
