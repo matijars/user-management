@@ -7,13 +7,13 @@
     Add new user</a
   >
 
-  <div class="flex gap-2">
+  <div class="flex gap-1">
     <a
-      id="signal-list-btn"
-      [routerLink]="['/users/signal-list']"
+      id="observable-list-btn"
+      [routerLink]="['/users/list']"
       class="my-5 block w-fit rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-500"
     >
-      Signal list</a
+      Observable list</a
     >
     <a
       id="log-out-btn"
@@ -44,7 +44,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let user of users$ | async"
+        *ngFor="let user of users"
         class="border-b border-gray-200 hover:bg-gray-50"
       >
         <td class="px-6 py-4">{{ user.username }}</td>
@@ -112,7 +112,7 @@
           >
         </td>
       </tr>
-      <tr *ngIf="(users$ | async)?.length === 0">
+      <tr *ngIf="users.length === 0">
         <td
           id="empty-table"
           colspan="4"

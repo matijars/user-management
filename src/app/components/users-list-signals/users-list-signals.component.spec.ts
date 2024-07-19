@@ -1,22 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppUsersListComponent } from './app-users-list.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { of } from 'rxjs';
+
+import { AppUsersListSignalsComponent } from './users-list-signals.component';
 import {
   AppUserModel,
   AppUsersServiceService,
 } from '../../services/app-users-service.service';
+import { of } from 'rxjs';
+import { signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-describe('AppUsersListComponent', () => {
-  let component: AppUsersListComponent;
-  let fixture: ComponentFixture<AppUsersListComponent>;
+describe('UsersListSignalsComponent', () => {
+  let component: AppUsersListSignalsComponent;
+  let fixture: ComponentFixture<AppUsersListSignalsComponent>;
   let usersService: jasmine.SpyObj<AppUsersServiceService>;
 
   beforeEach(async () => {
-    usersService = jasmine.createSpyObj('AppUsersServiceService', ['getUsers']);
+    usersService = jasmine.createSpyObj('AppUsersServiceService', [
+      'getUsersBySignal',
+    ]);
     await TestBed.configureTestingModule({
-      imports: [RouterModule, CommonModule],
+      imports: [AppUsersListSignalsComponent],
       providers: [
         {
           provide: ActivatedRoute,
@@ -27,30 +30,32 @@ describe('AppUsersListComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppUsersListComponent);
+    fixture = TestBed.createComponent(AppUsersListSignalsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should have all elements defined', () => {
     let addUserBtn = fixture.nativeElement.querySelector('#add-user-btn');
-    let signalListBtn = fixture.nativeElement.querySelector('#signal-list-btn');
+    let observableListBtn = fixture.nativeElement.querySelector(
+      '#observable-list-btn'
+    );
     let logOutBtn = fixture.nativeElement.querySelector('#log-out-btn');
     let usersTable = fixture.nativeElement.querySelector('#users-table');
 
     expect(addUserBtn).toBeTruthy();
-    expect(signalListBtn).toBeTruthy();
+    expect(observableListBtn).toBeTruthy();
     expect(logOutBtn).toBeTruthy();
     expect(usersTable).toBeTruthy();
   });
 
   it('should show msg if users lenght is 0', () => {
-    const emptyUsersArray: AppUserModel[] = [];
-    usersService.getUsers.and.returnValue(of(emptyUsersArray));
+    const usersSignal = signal<AppUserModel[]>([]);
+    usersService.getUsersBySignal.and.returnValue(usersSignal);
 
     fixture.detectChanges();
 

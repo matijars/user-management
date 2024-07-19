@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   AppUserModel,
   AppUsersServiceService,
@@ -8,17 +7,17 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-users-list',
+  selector: 'app-users-list-signals',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './app-users-list.component.html',
-  styleUrl: './app-users-list.component.scss',
+  templateUrl: './users-list-signals.component.html',
+  styleUrl: './users-list-signals.component.scss',
 })
-export class AppUsersListComponent implements OnInit {
-  users$!: Observable<AppUserModel[]>;
+export class AppUsersListSignalsComponent implements OnInit {
   usersService = inject(AppUsersServiceService);
+  users!: AppUserModel[];
 
   ngOnInit(): void {
-    this.users$ = this.usersService.getUsers();
+    this.users = this.usersService.getUsersBySignal()();
   }
 }
